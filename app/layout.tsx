@@ -48,6 +48,9 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider
+      afterSignOutUrl="/sign-in"
+      signInUrl="/sign-in"
+      signUpUrl="/sign-up"
       appearance={{
         baseTheme: dark,
         variables: {
@@ -92,6 +95,50 @@ export default function RootLayout({
           footer: { color: '#666666' },
           // Spinner / loader
           main: { color: '#e5e5e5' },
+
+          // ── UserButton Popup ────────────────────────────────────────────
+          userButtonPopoverCard: {
+            backgroundColor: '#141414',
+            border: '1px solid #2a2a2a',
+            boxShadow: '0 25px 60px rgba(0,0,0,0.7)',
+          },
+          userButtonPopoverMain: {
+            backgroundColor: '#141414',
+          },
+          userButtonPopoverActions: {
+            backgroundColor: '#141414',
+          },
+          userButtonPopoverActionButton: {
+            color: '#e5e5e5',
+            backgroundColor: 'transparent',
+          },
+          userButtonPopoverActionButton__manageAccount: {
+            color: '#e5e5e5',
+          },
+          userButtonPopoverActionButton__signOut: {
+            color: '#e5e5e5',
+          },
+          userButtonPopoverActionButtonText: {
+            color: '#e5e5e5',
+          },
+          userButtonPopoverActionButtonIcon: {
+            color: '#808080',
+          },
+          userButtonPopoverFooter: {
+            backgroundColor: '#141414',
+            borderColor: '#2a2a2a',
+          },
+          // Nombre y email en el header del popup
+          userPreviewMainIdentifier: {
+            color: '#e5e5e5',
+          },
+          userPreviewSecondaryIdentifier: {
+            color: '#808080',
+          },
+          userPreviewAvatarBox: {
+            width: '3rem',
+            height: '3rem',
+          },
         },
       }}
     >
