@@ -1,0 +1,125 @@
+[00:00:00.714] Server  LOG     ✓ Ready in 495ms
+[00:00:08.985] Server  ERROR   ⨯ ./app/globals.css:4895:8
+Parsing CSS source code failed
+  4893 |   initial-value: 0;
+  4894 | }
+> 4895 | @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Geist:wght@400;500;600;700&display=swap');
+       |        ^
+  4896 | :root {
+  4897 |   --background: #0a0a0a;
+  4898 |   --foreground: #e5e5e5;
+
+@import rules must precede all rules aside from @charset and @layer statements
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+
+
+[00:00:09.424] Browser ERROR   uncaughtError: Error: ./app/globals.css:4895:8
+Parsing CSS source code failed
+  4893 |   initial-value: 0;
+  4894 | }
+> 4895 | @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Geist:wght@400;500;600;700&display=swap');
+       |        ^
+  4896 | :root {
+  4897 |   --background: #0a0a0a;
+  4898 |   --foreground: #e5e5e5;
+
+@import rules must precede all rules aside from @charset and @layer statements
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+
+
+[00:00:09.682] Browser ERROR   ./app/globals.css:4895:8
+Parsing CSS source code failed
+  4893 |   initial-value: 0;
+  4894 | }
+> 4895 | @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Geist:wght@400;500;600;700&display=swap');
+       |        ^
+  4896 | :root {
+  4897 |   --background: #0a0a0a;
+  4898 |   --foreground: #e5e5e5;
+
+@import rules must precede all rules aside from @charset and @layer statements
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+[00:00:09.682] Browser ERROR   ./app/globals.css:4895:8
+Parsing CSS source code failed
+  4893 |   initial-value: 0;
+  4894 | }
+> 4895 | @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Geist:wght@400;500;600;700&display=swap');
+       |        ^
+  4896 | :root {
+  4897 |   --background: #0a0a0a;
+  4898 |   --foreground: #e5e5e5;
+
+@import rules must precede all rules aside from @charset and @layer statements
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+[00:00:10.039] Browser ERROR   ./app/globals.css:4895:8
+Parsing CSS source code failed
+  4893 |   initial-value: 0;
+  4894 | }
+> 4895 | @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Geist:wght@400;500;600;700&display=swap');
+       |        ^
+  4896 | :root {
+  4897 |   --background: #0a0a0a;
+  4898 |   --foreground: #e5e5e5;
+
+@import rules must precede all rules aside from @charset and @layer statements
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+[00:01:17.717] Server  LOG     ✓ Compiled in 154ms
+[00:01:19.465] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" className="dark">
+                          <body
+                            className="font-sans antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[00:01:19.465] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:01:19.465] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:01:19.465] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1773053120489} /_vercel/insights/view
