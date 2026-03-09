@@ -1,7 +1,7 @@
 'use client';
 
-import { Bell, User } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Bell } from 'lucide-react';
+import { UserButton } from '@clerk/nextjs';
 
 interface TopbarProps {
   title?: string;
@@ -49,13 +49,15 @@ export function Topbar({ title = 'Dashboard', breadcrumb }: TopbarProps) {
             <span className="sr-only">Notifications</span>
           </button>
 
-          {/* User Profile Avatar */}
-          <Avatar className="w-9 h-9 cursor-pointer hover:ring-2 hover:ring-[#a88d47] transition-all duration-200">
-            <AvatarImage src="https://github.com/shadcn.png" alt="User" />
-            <AvatarFallback className="bg-[#1a1a1a] text-[#a88d47] font-bold">
-              AD
-            </AvatarFallback>
-          </Avatar>
+          {/* User Profile — Clerk UserButton */}
+          <UserButton
+            appearance={{
+              elements: {
+                avatarBox:
+                  'w-9 h-9 hover:ring-2 hover:ring-[#a88d47] transition-all duration-200 rounded-full',
+              },
+            }}
+          />
         </div>
       </div>
     </header>

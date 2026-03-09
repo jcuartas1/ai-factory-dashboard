@@ -2,17 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Topbar } from '@/components/dashboard/topbar';
 
-// Mock shadcn Avatar para aislar el Topbar
-jest.mock('@/components/ui/avatar', () => ({
-  Avatar: ({ children, className }: { children: React.ReactNode; className?: string }) => (
-    <div data-testid="avatar" className={className}>{children}</div>
-  ),
-  AvatarImage: ({ src, alt }: { src: string; alt: string }) => (
-    <img data-testid="avatar-image" src={src} alt={alt} />
-  ),
-  AvatarFallback: ({ children, className }: { children: React.ReactNode; className?: string }) => (
-    <span data-testid="avatar-fallback" className={className}>{children}</span>
-  ),
+// Mock @clerk/nextjs para aislar el Topbar (UserButton)
+jest.mock('@clerk/nextjs', () => ({
+  UserButton: () => <div data-testid="user-button" />,
 }));
 
 describe('Topbar', () => {
@@ -75,9 +67,9 @@ describe('Topbar', () => {
     expect(screen.getByText('Notifications')).toBeInTheDocument();
   });
 
-  it('renderiza el avatar del usuario', () => {
+  it('renderiza el botón de perfil del usuario (UserButton de Clerk)', () => {
     render(<Topbar />);
-    expect(screen.getByTestId('avatar')).toBeInTheDocument();
+    expect(screen.getByTestId('user-button')).toBeInTheDocument();
   });
 
   it('el header tiene la clase de glassmorphism backdrop-blur', () => {
