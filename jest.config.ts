@@ -17,10 +17,17 @@ const config: Config = {
     'components/dashboard/**/*.{ts,tsx}',
     'components/projects/**/*.{ts,tsx}',
     'components/agents/**/*.{ts,tsx}',
+    // Capa de servicios e infraestructura HTTP
+    'lib/http/**/*.{ts,tsx}',
+    'lib/services/**/*.{ts,tsx}',
     '!**/*.d.ts',
     '!**/node_modules/**',
     // Excluye hooks shadcn duplicados en components/ui
     '!components/ui/**',
+    // Excluye repositories (SWR hooks — requieren renderHook, no unit tests puros)
+    '!lib/repositories/**',
+    // Excluye tipos de dominio (solo interfaces, sin lógica ejecutable)
+    '!lib/types/**',
   ],
   coverageThreshold: {
     global: {
@@ -28,6 +35,19 @@ const config: Config = {
       functions: 90,
       lines: 90,
       statements: 90,
+    },
+    // 100% de cobertura obligatorio en la capa de servicios e HTTP
+    './lib/services/': {
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
+    },
+    './lib/http/': {
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
     },
   },
 };
