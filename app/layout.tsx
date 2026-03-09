@@ -57,8 +57,41 @@ export default function RootLayout({
           colorText: 'white',
         },
         elements: {
+          // Tipografía global
           rootBox: { fontFamily: 'var(--font-geist-sans)' },
-          card: { fontFamily: 'var(--font-geist-sans)' },
+          card: {
+            fontFamily: 'var(--font-geist-sans)',
+            backgroundColor: '#141414',
+            border: '1px solid #2a2a2a',
+            boxShadow: '0 25px 60px rgba(0,0,0,0.6)',
+          },
+          // Textos del header de la card
+          headerTitle: { color: '#e5e5e5' },
+          headerSubtitle: { color: '#808080' },
+          // Divider "or"
+          dividerText: { color: '#666666' },
+          dividerLine: { backgroundColor: '#2a2a2a' },
+          // Labels de campos
+          formFieldLabel: { color: '#b0b0b0' },
+          formFieldInput: {
+            backgroundColor: '#0a0a0a',
+            borderColor: '#2a2a2a',
+            color: '#e5e5e5',
+          },
+          // Footer "Don't have an account? Sign up"
+          footerActionText: { color: '#808080' },
+          footerActionLink: { color: '#a88d47' },
+          // Botones sociales (Google)
+          socialButtonsBlockButton: {
+            backgroundColor: '#1a1a1a',
+            borderColor: '#2a2a2a',
+            color: '#e5e5e5',
+          },
+          socialButtonsBlockButtonText: { color: '#e5e5e5' },
+          // "Secured by Clerk"
+          footer: { color: '#666666' },
+          // Spinner / loader
+          main: { color: '#e5e5e5' },
         },
       }}
     >
