@@ -3,51 +3,56 @@
  *
  * SRP: gestiona exclusivamente las operaciones del recurso /projects.
  * DIP: depende de httpClient (abstracción).
+ *
+ * Rutas anidadas bajo tenant: /tenants/:tenantId/projects
  */
 
 import { httpClient, HttpClientOptions } from '@/lib/http/client';
 import type {
   Project,
+  ProjectDetail,
   CreateProjectDto,
-  UpdateProjectDto,
+  CreateProjectResponse,
 } from '@/lib/types/project.types';
 
-const BASE_PATH = '/api/projects';
+const tenantPath = (tenantId: string) => `/tenants/${tenantId}/projects`;
 
-/** Lista todos los proyectos del usuario autenticado. */
-export async function getProjects(options?: HttpClientOptions): Promise<Project[]> {
-  return httpClient.get<Project[]>(BASE_PATH, options);
-}
-
-/** Obtiene un proyecto por ID. */
-export async function getProjectById(
-  id: string,
+/** Lista todos los proyectos de un tenant. */
+export async function getProjects(
+  tenantId: string,
   options?: HttpClientOptions,
-): Promise<Project> {
-  return httpClient.get<Project>(`${BASE_PATH}/${id}`, options);
+): Promise<Project[]> {
+  const response = await httpClient.get<{ tenantId: string; projects: Project[] }>(
+    tenantPath(tenantId),
+    options,
+  );
+  return response.projects;
 }
 
-/** Crea un nuevo proyecto. */
+/** Obtiene el detalle completo de un proyecto (incluye hilos). */
+export async function getProjectById(
+  tenantId: string,
+  projectId: string,
+  options?: HttpClientOptions,
+): Promise<ProjectDetail> {
+  return httpClient.get<ProjectDetail>(
+    `${tenantPath(tenantId)}/${projectId}`,
+    options,
+  );
+}
+
+/**
+ * Crea un proyecto y su primer hilo atómicamente.
+ * La respuesta incluye firstThread.threadId para empezar a chatear de inmediato.
+ */
 export async function createProject(
+  tenantId: string,
   dto: CreateProjectDto,
   options?: HttpClientOptions,
-): Promise<Project> {
-  return httpClient.post<Project>(BASE_PATH, dto, options);
-}
-
-/** Actualiza parcialmente un proyecto existente. */
-export async function updateProject(
-  id: string,
-  dto: UpdateProjectDto,
-  options?: HttpClientOptions,
-): Promise<Project> {
-  return httpClient.patch<Project>(`${BASE_PATH}/${id}`, dto, options);
-}
-
-/** Elimina un proyecto por ID. */
-export async function deleteProject(
-  id: string,
-  options?: HttpClientOptions,
-): Promise<void> {
-  return httpClient.delete<void>(`${BASE_PATH}/${id}`, options);
+): Promise<CreateProjectResponse> {
+  return httpClient.post<CreateProjectResponse>(
+    tenantPath(tenantId),
+    dto,
+    options,
+  );
 }

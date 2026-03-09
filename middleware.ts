@@ -1,14 +1,23 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { NextResponse } from 'next/server'
 
 const isPublicRoute = createRouteMatcher([
-  '/',
   '/sign-in(.*)',
   '/sign-up(.*)',
 ])
 
 export default clerkMiddleware(async (auth, request) => {
+  const { userId } = await auth()
+  const { pathname } = request.nextUrl
+
+  // Usuario autenticado en la raíz → redirigir a onboarding al instante.
+  // Evita la pantalla negra mientras el RSC resuelve getMyTenants.
+  // /onboarding tiene la lógica de routing inteligente (polling incluido).
+  if (userId && pathname === '/') {
+    return NextResponse.redirect(new URL('/onboarding', request.url))
+  }
+
   if (!isPublicRoute(request)) {
-    // En Clerk v7: protect() es método directo de auth (objeto callable)
     await auth.protect()
   }
 })

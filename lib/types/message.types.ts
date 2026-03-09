@@ -6,24 +6,49 @@
  * siempre desde este módulo (ISP aplicado).
  */
 
-export type MessageRole = 'user' | 'assistant' | 'system';
+/**
+ * Roles posibles en un mensaje.
+ * ⚠️  El cliente NUNCA envía 'role' al backend — el servidor lo asigna.
+ *     Solo se usa para renderizado en el chat.
+ */
+export type MessageRole =
+  | 'USER'
+  | 'UX_AGENT'
+  | 'FULLSTACK_AGENT'
+  | 'DEVSEC_AGENT'
+  | 'ARCHITECT_AGENT'
+  | 'SYSTEM';
 
 export type MessageStatus = 'pending' | 'processing' | 'completed' | 'failed';
 
 /** Entidad Message tal como la devuelve la API. */
 export interface Message {
-  id: string;
+  messageId: string;
   role: MessageRole;
   content: string;
   status: MessageStatus;
-  projectId: string;
   createdAt: string;
-  updatedAt: string;
 }
 
-/** DTO para crear un nuevo mensaje (POST /messages). */
+/**
+ * DTO para enviar un mensaje.
+ * Solo se envía 'content' — el backend rechaza cualquier otra propiedad extra.
+ */
 export interface PostMessageDto {
   content: string;
-  projectId: string;
-  role?: MessageRole;
+}
+
+/** Respuesta inmediata del POST (201) — el agente procesa en background. */
+export interface PostMessageResponse {
+  messageId: string;
+  role: 'USER';
+  content: string;
+  status: 'pending';
+  createdAt: string;
+}
+
+/** Respuesta del GET .../messages */
+export interface MessagesResponse {
+  threadId: string;
+  messages: Message[];
 }

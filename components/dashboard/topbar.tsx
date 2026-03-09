@@ -1,7 +1,7 @@
 'use client';
 
 import { Bell } from 'lucide-react';
-import { UserButton } from '@clerk/nextjs';
+import { UserMenu } from '@/components/dashboard/user-menu';
 
 interface TopbarProps {
   title?: string;
@@ -49,15 +49,8 @@ export function Topbar({ title = 'Dashboard', breadcrumb }: TopbarProps) {
             <span className="sr-only">Notifications</span>
           </button>
 
-          {/* User Profile — Clerk UserButton */}
-          <UserButton
-            appearance={{
-              elements: {
-                avatarBox:
-                  'w-9 h-9 hover:ring-2 hover:ring-primary transition-all duration-200 rounded-full',
-              },
-            }}
-          />
+          {/* User Profile */}
+          <UserMenu />
         </div>
       </div>
     </header>

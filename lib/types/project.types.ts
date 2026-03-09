@@ -1,33 +1,69 @@
 /**
  * Tipos de dominio para Proyectos — lib/types/project.types.ts
+ *
+ * Basado en: FRONTEND_INTEGRATION_GUIDE.md v1.0
+ * Rutas: /tenants/:tenantId/projects (recursos anidados bajo tenant)
  */
 
 export type ProjectStatus =
-  | 'draft'
-  | 'generating'
-  | 'deploying'
-  | 'deployed'
-  | 'failed';
+  | 'DRAFT'
+  | 'UX_DESIGN'
+  | 'CODING'
+  | 'REVIEWING'
+  | 'DEPLOYED';
 
-/** Entidad Project tal como la devuelve la API. */
-export interface Project {
-  id: string;
-  name: string;
-  description: string;
-  status: ProjectStatus;
-  deployUrl?: string;
+export type ProjectSource = 'NEW_GENERATED' | 'GITHUB_IMPORTED';
+
+/** Hilo de chat (resumen) dentro de un proyecto. */
+export interface Thread {
+  threadId: string;
+  title: string;
+  status: 'OPEN' | 'RESOLVING' | 'PR_CREATED' | 'MERGED' | 'CLOSED';
   createdAt: string;
-  updatedAt: string;
 }
 
-/** DTO para crear un proyecto (POST /projects). */
+/** Primer hilo creado atómicamente junto al proyecto. */
+export interface FirstThread {
+  threadId: string;
+  title: string;
+  status: Thread['status'];
+}
+
+/** Entidad Project en la lista (GET /tenants/:id/projects). */
+export interface Project {
+  projectId: string;
+  name: string;
+  status: ProjectStatus;
+  sourceType: ProjectSource;
+  threadCount: number;
+  createdAt: string;
+}
+
+/** Detalle completo de un proyecto (GET /tenants/:id/projects/:pid). */
+export interface ProjectDetail extends Project {
+  githubRepoUrl?: string;
+  vercelDeploymentUrl?: string;
+  threads: Thread[];
+}
+
+/** Respuesta de POST /tenants/:tenantId/projects */
+export interface CreateProjectResponse {
+  projectId: string;
+  name: string;
+  status: ProjectStatus;
+  sourceType: ProjectSource;
+  githubRepoUrl?: string;
+  vercelDeploymentUrl?: string;
+  createdAt: string;
+  firstThread: FirstThread;
+}
+
+/** DTO para crear un proyecto. */
 export interface CreateProjectDto {
   name: string;
-  description: string;
-}
-
-/** DTO para actualizar un proyecto (PATCH /projects/:id). */
-export interface UpdateProjectDto {
-  name?: string;
-  description?: string;
+  sourceType: ProjectSource;
+  /** Obligatorio si sourceType === 'GITHUB_IMPORTED' */
+  githubRepoUrl?: string;
+  /** Opcional */
+  vercelDeploymentUrl?: string;
 }

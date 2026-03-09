@@ -51,6 +51,7 @@ export default function RootLayout({
       afterSignOutUrl="/sign-in"
       signInUrl="/sign-in"
       signUpUrl="/sign-up"
+      signInFallbackRedirectUrl="/onboarding"
       appearance={{
         baseTheme: dark,
         variables: {
