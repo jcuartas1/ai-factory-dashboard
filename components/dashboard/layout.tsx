@@ -14,7 +14,7 @@ export function DashboardLayout({
   breadcrumb,
 }: DashboardLayoutProps) {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       <Sidebar />
       <Topbar title={title} breadcrumb={breadcrumb} />
       <main className="ml-64 mt-16 p-8">

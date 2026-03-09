@@ -22,6 +22,10 @@
   --input: #1a1a1a;
   --ring: #a88d47;
   --radius: 0.5rem;
+  /* Design tokens extendidos */
+  --subtle: #b0b0b0;
+  --separator: #666666;
+  --elevated: #222222;
 }
 
 .dark {
@@ -44,6 +48,10 @@
   --border: #2a2a2a;
   --input: #1a1a1a;
   --ring: #a88d47;
+  /* Design tokens extendidos */
+  --subtle: #b0b0b0;
+  --separator: #666666;
+  --elevated: #222222;
 }
 
 @theme inline {
@@ -68,6 +76,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  /* Design tokens extendidos */
+  --color-subtle: var(--subtle);
+  --color-separator: var(--separator);
+  --color-elevated: var(--elevated);
 }
 
 @layer base {

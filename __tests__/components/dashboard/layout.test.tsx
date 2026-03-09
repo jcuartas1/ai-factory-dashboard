@@ -79,7 +79,7 @@ describe('DashboardLayout (components/dashboard/layout)', () => {
     );
 
     const wrapper = container.firstChild as HTMLElement;
-    expect(wrapper).toHaveClass('min-h-screen', 'bg-[#0a0a0a]');
+    expect(wrapper).toHaveClass('min-h-screen', 'bg-background');
   });
 
   it('el main tiene las clases de layout correctas', () => {

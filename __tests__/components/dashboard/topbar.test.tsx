@@ -106,6 +106,6 @@ describe('Topbar', () => {
 
     const links = container.querySelectorAll('a');
     const lastLink = links[links.length - 1];
-    expect(lastLink.className).toContain('text-[#e5e5e5]');
+    expect(lastLink.className).toContain('text-foreground');
   });
 });

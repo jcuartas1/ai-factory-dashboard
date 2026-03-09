@@ -46,7 +46,7 @@ describe('Sidebar', () => {
     render(<Sidebar />);
 
     const projectsLink = screen.getByRole('link', { name: /projects/i });
-    expect(projectsLink).toHaveClass('text-[#a88d47]');
+    expect(projectsLink).toHaveClass('text-primary');
   });
 
   it('resalta AI Agents cuando el pathname es /agents', () => {
@@ -54,7 +54,7 @@ describe('Sidebar', () => {
     render(<Sidebar />);
 
     const agentsLink = screen.getByRole('link', { name: /ai agents/i });
-    expect(agentsLink).toHaveClass('text-[#a88d47]');
+    expect(agentsLink).toHaveClass('text-primary');
   });
 
   it('resalta Analytics cuando el pathname es /analytics', () => {
@@ -62,7 +62,7 @@ describe('Sidebar', () => {
     render(<Sidebar />);
 
     const analyticsLink = screen.getByRole('link', { name: /analytics/i });
-    expect(analyticsLink).toHaveClass('text-[#a88d47]');
+    expect(analyticsLink).toHaveClass('text-primary');
   });
 
   it('resalta Settings cuando el pathname es /settings', () => {
@@ -70,7 +70,7 @@ describe('Sidebar', () => {
     render(<Sidebar />);
 
     const settingsLink = screen.getByRole('link', { name: /settings/i });
-    expect(settingsLink).toHaveClass('text-[#a88d47]');
+    expect(settingsLink).toHaveClass('text-primary');
   });
 
   it('resalta Projects en rutas anidadas como /projects/123', () => {
@@ -78,7 +78,7 @@ describe('Sidebar', () => {
     render(<Sidebar />);
 
     const projectsLink = screen.getByRole('link', { name: /projects/i });
-    expect(projectsLink).toHaveClass('text-[#a88d47]');
+    expect(projectsLink).toHaveClass('text-primary');
   });
 
   it('NO resalta ningún ítem en una ruta desconocida', () => {
@@ -92,7 +92,7 @@ describe('Sidebar', () => {
       )
     );
     navLinks.forEach(link => {
-      expect(link).not.toHaveClass('text-[#a88d47]');
+      expect(link).not.toHaveClass('text-primary');
     });
   });
 
@@ -135,7 +135,7 @@ describe('Sidebar', () => {
     const { container } = render(<Sidebar />);
 
     // El indicador activo (línea dorada izquierda) solo aparece cuando isActive es true
-    const activeIndicators = container.querySelectorAll('.bg-\\[\\#a88d47\\].w-1.h-6');
+    const activeIndicators = container.querySelectorAll('.bg-primary.w-1.h-6');
     expect(activeIndicators).toHaveLength(0);
   });
 
