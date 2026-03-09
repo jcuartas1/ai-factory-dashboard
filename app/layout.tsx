@@ -1,15 +1,25 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Playfair_Display, Geist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['600', '700', '800'],
+  variable: '--font-playfair',
+  display: 'swap',
+})
+
+const geist = Geist({
+  subsets: ['latin'],
+  variable: '--font-geist-sans',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'AI Software Factory',
+  description: 'Plataforma SaaS B2B Premium para generación de software con IA',
+  generator: 'aifactory-dev',
   icons: {
     icon: [
       {
@@ -35,8 +45,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="font-sans antialiased" suppressHydrationWarning>
+    <html lang="es" className="dark">
+      <body
+        className={`${playfair.variable} ${geist.variable} font-sans antialiased`}
+        suppressHydrationWarning
+      >
         {children}
         <Analytics />
       </body>

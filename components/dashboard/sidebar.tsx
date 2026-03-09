@@ -2,33 +2,34 @@
 
 import { LayoutGrid, Zap, BarChart3, Settings, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const navigationItems = [
   {
     name: 'Projects',
-    href: '#projects',
+    href: '/projects',
     icon: LayoutGrid,
   },
   {
     name: 'AI Agents',
-    href: '#agents',
+    href: '/agents',
     icon: Zap,
   },
   {
     name: 'Analytics',
-    href: '#analytics',
+    href: '/analytics',
     icon: BarChart3,
   },
   {
     name: 'Settings',
-    href: '#settings',
+    href: '/settings',
     icon: Settings,
   },
 ];
 
 export function Sidebar() {
-  const [activeItem, setActiveItem] = useState('Projects');
+  const pathname = usePathname();
   const [isOrgOpen, setIsOrgOpen] = useState(false);
 
   return (
@@ -45,12 +46,11 @@ export function Sidebar() {
       <nav className="flex-1 px-4 py-8 space-y-2">
         {navigationItems.map((item) => {
           const Icon = item.icon;
-          const isActive = activeItem === item.name;
+          const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
           return (
             <Link
               key={item.name}
               href={item.href}
-              onClick={() => setActiveItem(item.name)}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group relative ${
                 isActive
                   ? 'bg-[#1a1a1a] text-[#a88d47]'
