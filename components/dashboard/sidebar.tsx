@@ -1,9 +1,10 @@
 'use client';
 
-import { LayoutGrid, Zap, BarChart3, Settings, ChevronDown } from 'lucide-react';
+import { LayoutGrid, Zap, BarChart3, Settings, ChevronDown, AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import type { TenantStatus } from '@/lib/types/tenant.types';
 
 const navigationItems = [
   {
@@ -28,7 +29,12 @@ const navigationItems = [
   },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  tenantName?: string;
+  tenantStatus?: TenantStatus;
+}
+
+export function Sidebar({ tenantName, tenantStatus }: SidebarProps) {
   const pathname = usePathname();
   const [isOrgOpen, setIsOrgOpen] = useState(false);
 
@@ -75,16 +81,31 @@ export function Sidebar() {
           className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-input hover:bg-elevated transition-colors duration-200 text-subtle hover:text-foreground"
         >
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-md bg-primary/20 flex items-center justify-center">
-              <span className="text-xs font-bold text-primary">AD</span>
+            <div className="w-8 h-8 rounded-md bg-primary/20 flex items-center justify-center shrink-0">
+              <span className="text-xs font-bold text-primary">
+                {tenantName ? tenantName.slice(0, 2).toUpperCase() : '—'}
+              </span>
             </div>
-            <div className="text-left">
-              <p className="text-xs font-medium">Current Org</p>
-              <p className="text-xs text-muted-foreground">Aura Dev</p>
+            <div className="text-left min-w-0">
+              <p className="text-xs font-medium truncate">{tenantName ?? 'Organización'}</p>
+              <div className="flex items-center gap-1 mt-0.5">
+                {tenantStatus === 'PENDING_PAYMENT' && (
+                  <AlertTriangle className="w-3 h-3 text-yellow-500 shrink-0" />
+                )}
+                <p className={`text-xs truncate ${
+                  tenantStatus === 'ACTIVE' ? 'text-green-500' :
+                  tenantStatus === 'SUSPENDED' ? 'text-destructive' :
+                  'text-yellow-500'
+                }`}>
+                  {tenantStatus === 'ACTIVE' ? 'Activo' :
+                   tenantStatus === 'SUSPENDED' ? 'Suspendido' :
+                   tenantStatus === 'PENDING_PAYMENT' ? 'Pago pendiente' : '—'}
+                </p>
+              </div>
             </div>
           </div>
           <ChevronDown
-            className={`w-4 h-4 transition-transform duration-200 ${
+            className={`w-4 h-4 shrink-0 transition-transform duration-200 ${
               isOrgOpen ? 'rotate-180' : ''
             }`}
           />

@@ -21,6 +21,16 @@ export default async function Layout({ children }: { children: ReactNode }) {
     if (tenants.length === 0) {
       redirect('/onboarding');
     }
+
+    const tenant = tenants[0];
+    return (
+      <DashboardLayout
+        tenantName={tenant.tenantName}
+        tenantStatus={tenant.tenantStatus}
+      >
+        {children}
+      </DashboardLayout>
+    );
   } catch (err) {
     if (err instanceof HttpError) {
       // 401/403 = sesión inválida o expirada → login
@@ -35,5 +45,5 @@ export default async function Layout({ children }: { children: ReactNode }) {
     redirect('/onboarding');
   }
 
-  return <DashboardLayout>{children}</DashboardLayout>;
+  return <DashboardLayout>{children}</DashboardLayout>; // fallback: no debería llegar aquí
 }
