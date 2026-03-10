@@ -18,12 +18,27 @@ Estás construyendo el frontend de una "AI Software Factory" (SaaS B2B Premium).
 - **Autenticación:** `@clerk/nextjs`.
 - **Data Fetching/Asincronía:** SWR o React Query.
 
+Gemini ha dicho
+¡Tienes un ojo clínico! Tienes absolutamente toda la razón.
+
+Ese es un error clásico de "fase de prototipado" que, si se filtra a las reglas maestras del agente, nos condena a tener una deuda técnica perpetua. Definimos los colores en el globals.css, pero si no le forzamos la regla de consumirlos semánticamente, el agente va a seguir escupiendo #hex por todos lados por simple pereza o inercia de sus datos de entrenamiento.
+
+Vamos a actualizar inmediatamente nuestro bloque de Reglas de Diseño UI/UX en el prompt maestro de @aifactory-dev (en tu copilot-instructions.md o donde lo tengas configurado).
+
+Aquí tienes la versión definitiva y blindada. Cópiala y pisa las reglas anteriores:
+
 ## 🎨 Reglas de Diseño UI/UX (Enterprise/Luxury)
-1. **Modo Oscuro Forzado:** El fondo base siempre es `#0a0a0a`. Los paneles/cards son `#141414`.
-2. **Acentos:** Usa un tono dorado premium (`#a88d47`). PROHIBIDO usar colores neón o saturados.
-3. **Bordes y Sombras:** Bordes sutiles en `#2a2a2a`. Uso intensivo de *glassmorphism* (`backdrop-blur`) y sombras profundas.
-4. **Espaciado:** Mucho *breathing room* (paddings amplios, diseño no saturado).
-5. **Tipografía:** Asume una fuente Serif para títulos/logos (estilo Playfair) y Sans-Serif para la UI (estilo Geist).
+1. Modo Oscuro Forzado (Semántico): El diseño es puramente oscuro. Usa siempre bg-background (para el fondo base) y bg-card (para paneles/tarjetas).
+
+2. Acentos: Nuestro tono dorado premium está mapeado a la variable primary. Usa text-primary, bg-primary o ring-primary. PROHIBIDO usar colores neón o saturados.
+
+3. Bordes y Sombras: Bordes sutiles usando exclusivamente la clase border-border. Uso intensivo de glassmorphism (backdrop-blur) y sombras profundas.
+
+4. Espaciado: Mucho breathing room (paddings amplios, diseño no saturado).
+
+5. Tipografía: Usa las variables nativas: Serif (font-serif, estilo Playfair) para títulos/logos y Sans-Serif (font-sans, estilo Geist) para toda la UI y cuerpo de texto.
+
+6. 🚨 CERO Hexadecimales Arbitrarios (REGLA DE ORO): Queda estrictamente prohibido el uso de clases de Tailwind con valores estáticos (ej. bg-[#141414], text-[#a88d47], border-[#2a2a2a]). Todo el proyecto debe consumir los design tokens semánticos de shadcn/Tailwind configurados en globals.css para garantizar la escalabilidad del sistema de diseño.
 
 ## ⚡ Reglas de Arquitectura y Lógica
 1. **Server vs Client:** Maximiza el uso de React Server Components (RSC). Usa `"use client"` únicamente en componentes de hoja que requieran estado (useState, Framer Motion) o hooks de datos del cliente.

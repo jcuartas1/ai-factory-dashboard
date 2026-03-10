@@ -6,7 +6,7 @@ export default function SettingsPage() {
         <p className="text-muted-foreground mt-1 text-sm">Gestiona tu cuenta, organización e integraciones.</p>
       </div>
       <div className="rounded-lg border border-border bg-card p-12 flex items-center justify-center">
-        <p className="text-[#808080] text-sm">Las opciones de configuración aparecerán aquí.</p>
+        <p className="text-muted-foreground text-sm">Las opciones de configuración aparecerán aquí.</p>
       </div>
     </div>
   );

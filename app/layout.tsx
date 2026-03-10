@@ -3,6 +3,7 @@ import { Playfair_Display, Geist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
+import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -149,6 +150,7 @@ export default function RootLayout({
           suppressHydrationWarning
         >
           {children}
+          <Toaster richColors position="bottom-right" />
           <Analytics />
         </body>
       </html>
